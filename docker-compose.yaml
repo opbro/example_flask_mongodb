@@ -1,0 +1,28 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: frontend
+    depends_on:
+      - mongoserver
+    networks: 
+      - backend
+    volumes: 
+      - ./frontend/app.py:/app/app.py
+    ports: 
+      - "8443:8443"
+  mongoserver:
+    image: mongo@sha256:48a59166d81b41da82cedc8e57223cfc7b6314dc34e8a571dc12f2fc35ac9258
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - backend_db:/data/db
+    ports:
+      - 27017:27017
+    command: mongod
+    networks: 
+      - backend
+networks: 
+  backend:
+volumes:
+  backend_db:
