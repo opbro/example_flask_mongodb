@@ -35,7 +35,7 @@ def verify_password(username, password):
 def index():
     return 'V0.0.1'
 
-@app.route('/fingerprint', methods=['POST'])
+@app.route('/document', methods=['POST'])
 @auth.login_required
 def fingerprint():
     data = request.get_json()
