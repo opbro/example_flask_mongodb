@@ -37,7 +37,7 @@ def index():
 
 @app.route('/document', methods=['POST'])
 @auth.login_required
-def fingerprint():
+def document():
     data = request.get_json()
     insert_id = col.insert_one(data).inserted_id
     return (str(insert_id), 204)
