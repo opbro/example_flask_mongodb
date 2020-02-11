@@ -8,9 +8,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 import os
 
-CERT_PEM_PATH = os.getenv('CERT_PEM_PATH', 'cert.pem')
-KEY_PEM_PATH = os.getenv('KEY_PEM_PATH', 'key.pem')
-
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
@@ -51,6 +48,4 @@ def documents():
     return jsonify(documents)
 
 if __name__ == '__main__':
-    # Add this line to enable ssl or use a reverse proxy... ur choice
-    # app.run(host='0.0.0.0', port='8443', ssl_context=(CERT_PEM_PATH, KEY_PEM_PATH), debug=True)
-    app.run(host='0.0.0.0', port='8443', debug=True)
+    app.run(host='0.0.0.0', port='8443', debug=False)
